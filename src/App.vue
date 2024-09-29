@@ -38,6 +38,7 @@ import Map from "./page/map.vue"
   align-items: center;
   height: 100vh;
   width: 100vw;
+  
 }
 .data {
   width: 100vw;
