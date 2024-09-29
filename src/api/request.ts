@@ -1,13 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import axios, { AxiosRequestConfig, AxiosResponse, AxiosInstance } from 'axios';
+import axios from 'axios';
 const API_URL = import.meta.env.VITE_API_URL
 
-interface CustomAxiosInstance extends AxiosInstance {
-  <T = any, R = AxiosResponse<T>, D = any>(config: AxiosRequestConfig<D>): Promise<T>;
-  <T = any, R = AxiosResponse<T>, D = any>(url: string, config?: AxiosRequestConfig<D>): Promise<T>;
-}
 
-const request: CustomAxiosInstance = axios.create({
+const request = axios.create({
   baseURL: API_URL,
   timeout: 10000,
 });
