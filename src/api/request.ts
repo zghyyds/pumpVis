@@ -8,7 +8,7 @@ const request = axios.create({
   timeout: 10000,
 });
 
-// request interceptors
+// request interceptorsdd
 request.interceptors.request.use(
   (config) => {
     return config;
