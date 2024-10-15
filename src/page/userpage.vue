@@ -11,7 +11,7 @@
 
 <script setup>
 import { reactive, ref, onMounted } from 'vue'
-import { statisticsUser } from '../api/index'
+import { statisticsUser,jettonstatistics } from '../api/index'
 import EChartComponent from '../components/echarts.vue'
 import { statisticslogin, deviceStatistics, statisticsPage } from '../api/index'
 import * as echarts from 'echarts' // 引入 ECharts
@@ -29,7 +29,25 @@ onMounted(() => {
   initData()
   deviceList()
   clickdata()
+  getjetton()
 })
+
+const getjetton = async () => {
+  let res = await jettonstatistics()
+  console.log(res,'popopopo');
+  let list = []
+  if(res){
+    Object.keys(res).map(v=>{
+      if (v === 'id') return
+      let data ={
+        name:v,
+        value:res[v]
+      }
+      list.push(data)
+    })
+  } 
+  chartOptions3.value.series[0].data = list
+}
 
 const initData = async () => {
   let res = await statisticsUser()
@@ -115,7 +133,7 @@ const chartOptions3 = ref({
     trigger: 'item'
   },
   title: {
-    text: '网络信息',
+    text: 'jetton信息',
 
     top: '45%',
     left: 'center',
@@ -136,9 +154,11 @@ const chartOptions3 = ref({
         borderWidth: 2
       },
       data: [
-        { value: 1048, name: '4g' },
-        { value: 735, name: 'wifi' },
-        { value: 580, name: '5g' }
+        { value: 1048, name: 'next_click' },
+        { value: 735, name: 'create_click' },
+        { value: 580, name: 'created' },
+        { value: 580, name: 'buy_click' },
+        { value: 580, name: 'sell_click' }
       ]
     }
   ]

@@ -29,3 +29,7 @@ export const statisticsIp = async () => {
   return request.post(`${API_URL}/statistics/ip`)
 }
 
+export const jettonstatistics = async () => {
+  return request.post(`${API_URL}/statistics/jetton_statistics`)
+}
+
